@@ -2,15 +2,15 @@
     const numImages = 45;
 
     // See whether overlays are even enabled
-    chrome.storage.local.get(['overlayEnabled'], (result) => {
-        //result is an object that contains the data retrieved from chrome.storage.local.get
+    browser.storage.local.get(['overlayEnabled'], (result) => {
+        //result is an object that contains the data retrieved from browser.storage.local.get
         //overlayEnabled is an attribute of result
         const enabled = result.overlayEnabled !== false; // default to true if not set
         const opacity = enabled ? '1' : '0';
 
         // get all yt thumbnails
         function getThumbnails() {
-            const thumbnails = document.querySelectorAll("ytd-thumbnail:not(.ytd-video-preview, .ytd-rich-grid-slim-media) a > yt-image > img.yt-core-image:only-child:not(.yt-core-attributed-string__image-element),.ytp-videowall-still-image:not([style*='extension:'])");
+            const thumbnails = document.querySelectorAll("ytd-thumbnail:not(.ytd-video-preview, .ytd-rich-grid-slim-media) a > yt-image > img.yt-core-image:only-child:not(.yt-core-attributed-string__image-element),.ytp-videowall-still-image:not([style*='extension:']),yt-thumbnail-view-model > div > img.yt-core-image:only-child:not(.yt-core-attributed-string__image-element)");
 
             // For each image in the thumbnails array (which is thumbnail), get its image index, its base url, and then send it to 
             // apply thumbnails for a merge
@@ -47,7 +47,7 @@
 
         // Get URL of the overlay image
         function getOverlayUrl(index) {
-            return chrome.runtime.getURL(`assets/images/${index}.PNG`);
+            return browser.runtime.getURL(`assets/images/${index}.png`);
         }
 
         // Observe the entire body of the document for changes
