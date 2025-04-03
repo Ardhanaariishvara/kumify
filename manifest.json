@@ -21,6 +21,13 @@
         "assets/images/*.png"
   ],
 
+  "browser_action": {
+	  "default_icon": "assets/icon/IconKumiko.png",
+	  "default_title": "Kumify YouTube",
+	  "default_popup": "popup.html"
+
+  },
+
   "browser_specific_settings": {
   "gecko": {
     "id": "kumify@ardhanaariishvara.org",
